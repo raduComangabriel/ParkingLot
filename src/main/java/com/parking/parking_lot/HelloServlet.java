@@ -1,4 +1,4 @@
-package org.example.parking_lot;
+package com.parking.parking_lot;
 
 import java.io.*;
 
