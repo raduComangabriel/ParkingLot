@@ -47,5 +47,6 @@ public class HelloServlet extends HttpServlet {
         // Redirecționează înapoi către pagina Users pentru a afișa lista actualizată
         response.sendRedirect(request.getContextPath() + "/Users");
         response.sendRedirect(request.getContextPath() + "/Cars");
+
     }
 }
