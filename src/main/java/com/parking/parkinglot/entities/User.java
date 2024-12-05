@@ -1,4 +1,4 @@
-package com.parking.parking_lot.entities;
+package com.parking.parkinglot.entities;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name = "users")
 public class User {
     private Long id;
 
@@ -15,7 +14,6 @@ public class User {
     private Collection<Car> cars = new ArrayList<>();
 
     @Basic
-    @Column(name = "username")
     public String getUsername() {
         return username;
     }

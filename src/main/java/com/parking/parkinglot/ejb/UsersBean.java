@@ -2,8 +2,8 @@ package com.parking.parkinglot.ejb;
 
 import com.parking.parkinglot.common.CarDto;
 import com.parking.parkinglot.common.UserDto;
-import com.parking.parking_lot.entities.Car;
-import com.parking.parking_lot.entities.User;
+import com.parking.parkinglot.entities.Car;
+import com.parking.parkinglot.entities.User;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -20,7 +20,7 @@ public class UsersBean {
     private static final Logger LOG = Logger.getLogger(UsersBean.class.getName());
 
     @PersistenceContext
-     EntityManager entityManager;
+    EntityManager entityManager;
 
     public List<UserDto> findAllUsers() {
         LOG.info("findAllUsers");
@@ -45,7 +45,7 @@ public class UsersBean {
     public List<UserDto> getAllUsers() {
         List<User> users = entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
         return users.stream()
-                .map(user -> new UserDto(user.getId(), user.getUsername(), user.getEmail()))
+                .map(user -> new UserDto(user.getUsername(), user.getEmail(), user.getId()))
                 .collect(Collectors.toList());
     }
     public void addUser(String username, String email) {
