@@ -26,8 +26,8 @@
     </div>
     <div class="row">
       <div class="col-md-6 mb-3">
-        <label for="parking_spot">Owner</label>
-        <select type="custom-select d-block w-100"  id="owner_id" name="owner_id" required>
+        <label for="owner_id">Owner</label>
+        <select class="custom-select d-block w-100"  id="owner_id" name="owner_id" required>
           <option value="">Choose...</option>
           <c:forEach var="user" items="${users}" varStatus="status">
             <option value="${user.id}" ${car.ownerName eq user.username ? 'selected' : ''}>${user.username}</option>

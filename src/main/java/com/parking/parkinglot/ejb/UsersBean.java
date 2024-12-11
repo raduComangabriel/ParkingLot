@@ -36,18 +36,12 @@ public class UsersBean {
     public List<UserDto> copyUsersToDto (List<User> users) {
         List<UserDto> userDtoList = new ArrayList<>();
         for(User user : users){
-            UserDto userDto = new UserDto(user.getUsername(), user.getEmail(), user.getId());
+            UserDto userDto = new UserDto( user.getId(), user.getUsername(), user.getEmail());
             userDtoList.add(userDto);
         }
         return userDtoList;
     }
 
-    public List<UserDto> getAllUsers() {
-        List<User> users = entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
-        return users.stream()
-                .map(user -> new UserDto(user.getUsername(), user.getEmail(), user.getId()))
-                .collect(Collectors.toList());
-    }
     public void addUser(String username, String email) {
         User user = new User();
         user.setUsername(username);

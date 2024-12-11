@@ -1,26 +1,23 @@
 package com.parking.parkinglot.common;
 
 public class UserDto {
-    private String Id;
+    private Long Id;
     private String Username;
-    private Long Email;
+    private String Email;
 
-    public UserDto(String id, String username, Long email) {
+    public UserDto(Long id, String username, String email) {
         this.Id = id;
         this.Username = username;
         this.Email = email;
     }
 
-    public UserDto(Long id, String username, String email) {
-
-    }
 
     // Getters și setters
-    public String getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.Id = id;
     }
 
@@ -32,11 +29,11 @@ public class UserDto {
         this.Username = username;
     }
 
-    public Long getEmail() {
+    public String getEmail() {
         return Email;
     }
 
-    public void setEmail(Long email) {
+    public void setEmail(String email) {
         this.Email = email;
     }
 }

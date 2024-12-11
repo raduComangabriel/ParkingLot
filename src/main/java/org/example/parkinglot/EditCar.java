@@ -17,7 +17,6 @@ public class EditCar extends HttpServlet {
 
     @Inject
     UsersBean usersBean;
-
     @Inject
     CarsBean carsBean;
     @Override
