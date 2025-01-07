@@ -4,7 +4,7 @@
 
 <t:pageTemplate pageTitle="AddUser">
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
-    <h1>Add User</h1>
+        <h1>Add User</h1>
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="username">Username</label>

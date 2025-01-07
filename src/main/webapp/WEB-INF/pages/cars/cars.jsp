@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col">
             <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
-            <input type="checkbox" name="car_ids" value="${car.id}" />
+              <input type="checkbox" name="car_ids" value="${car.id}" />
             </c:if>
           </div>
           <div class="col">
@@ -34,9 +34,9 @@
             <div class="col">
               <a class="btn btn-secondary" href="${pageContext.request.contextPath}/AddCarPhoto?id=${car.id}" role="button">Add photo</a>
             </div>
-             <div class="col">
-                <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditCar?id=${car.id}">Edit Car</a>
-             </div>
+            <div class="col">
+              <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditCar?id=${car.id}">Edit Car</a>
+            </div>
           </c:if>
         </div>
       </c:forEach>
