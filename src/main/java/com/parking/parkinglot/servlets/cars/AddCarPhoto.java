@@ -17,11 +17,11 @@ public class AddCarPhoto extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long carId = Long.parseLong(request.getParameter("Id"));
+        Long carId = Long.parseLong(request.getParameter("id"));
         CarDto car = carsBean.findByid(carId);
         request.setAttribute("car", car);
 
-        request.getRequestDispatcher("/WEB-INF/pages/addCarPhoto.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/cars/addCarPhoto.jsp").forward(request, response);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AddCarPhoto extends HttpServlet {
         String fileName = filePart.getSubmittedFileName();
         String fileType = filePart.getContentType();
         long fileSize = filePart.getSize();
-        byte[] fileContent = new byte[(int) fileSize];
+        byte[] fileContent = new byte[(int)fileSize];
         filePart.getInputStream().read(fileContent);
 
         carsBean.addPhotoToCar(carId, fileName, fileType, fileContent);

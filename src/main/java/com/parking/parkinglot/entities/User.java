@@ -26,7 +26,7 @@ public class User {
     }
 
 
-    @OneToMany(mappedBy = "owner", orphanRemoval = true)
+    @OneToMany(mappedBy = "owner")
     public Collection<Car> getCars() {
         return cars;
     }

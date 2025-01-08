@@ -1,52 +1,40 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}">Parking Lot</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/")) eq '/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <c:if test="${pageContext.request.isUserInRole('READ_CARS')}">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/Cars">Cars</a>
+
+<t:pageTemplate pageTitle="Users">
+    <h1>Users</h1>
+    <form method="POST" action="${pageContext.request.contextPath}/Users">
+        <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
+            <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser">Add User</a>
+            <button class="btn btn-danger" type="submit">Invoice</button>
+        </c:if>
+        <div class="container text-center">
+            <c:forEach var="user" items="${users}">
+                <div class="row">
+                    <div class="col">
+                        <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+                            <input type="checkbox" name="user_ids" value="${user.id}" />
                         </c:if>
-                    </li>
+                    </div>
 
-                    <li class="nav-item">
-                        <c:if test="${pageContext.request.isUserInRole('READ_USERS')}">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
-                        </c:if>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <c:choose>
-                            <c:when test="${pageContext.request.getRemoteUser() == null}">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
-                            </c:otherwise>
-                        </c:choose>
-                    </li>
-                </ul>
-            </div>
+                    <div class="col">
+                            ${user.username}
+                    </div>
+                    <div class="col">
+                            ${user.email}
+                    </div>
+                </div>
+            </c:forEach>
         </div>
-    </nav>
-</header>
 
+
+    </form>
+    <c:if test="${not empty invoices}">
+        <h2>Invoices</h2>
+        <c:forEach var="username" items = "${invoices}" varStatus="status">
+            ${status.index + 1}.${username}
+            <br/>
+        </c:forEach>
+    </c:if>
+</t:pageTemplate>

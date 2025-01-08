@@ -33,17 +33,18 @@ public class Users extends HttpServlet {
         request.setAttribute("users",users);
 
         if(!invoiceBean.getUserIds().isEmpty()){
-            Collection<String> username = usersBean.findUsernamesByUserIds(invoiceBean.getUserIds());
-            request.setAttribute("invoices",username);
+            Collection<String> usernames = usersBean.findUsernamesByUserIds(invoiceBean.getUserIds());
+            request.setAttribute("invoices",usernames);
         }
 
-        request.getRequestDispatcher("/WEB-INF/pages/user.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/pages/users/user.jsp").forward(request,response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] userIdsAsString = request.getParameterValues("userIds");
-        if (userIdsAsString == null){
+    protected void doPost(HttpServletRequest request, HttpServletResponse
+            response) throws ServletException, IOException {
+        String[] userIdsAsString = request.getParameterValues("user_ids");
+        if(userIdsAsString != null){
             List<Long> userIds = new ArrayList<>();
             for(String userIdAsString : userIdsAsString){
                 userIds.add(Long.parseLong(userIdAsString));
@@ -51,7 +52,5 @@ public class Users extends HttpServlet {
             invoiceBean.getUserIds().addAll(userIds);
         }
         response.sendRedirect(request.getContextPath() + "/Users");
-        response.setContentType("text/html");
-        response.getWriter().println("<h1> Users updated successfully</h1>");
     }
 }

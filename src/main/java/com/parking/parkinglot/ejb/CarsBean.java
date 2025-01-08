@@ -119,15 +119,14 @@ public class CarsBean {
     }
 
     public CarPhotoDto findPhotoByCarId(Integer carId) {
-        List<CarPhoto> photos = entityManager.createQuery("SELECT p FROM CarPhoto p where p.car.id = :id", CarPhoto.class)
+        List<CarPhoto> photos = entityManager.createQuery("SELECT p FROM CarPhoto p where p.car.id= :id", CarPhoto.class)
                 .setParameter("id", carId)
                 .getResultList();
         if (photos.isEmpty()) {
             return null;
         }
         CarPhoto photo = photos.get(0); // the first element
-        return new CarPhotoDto(photo.getId(), photo.getFilename(), photo.getFileType(),
-                photo.getFileContent());
+        return new CarPhotoDto(photo.getId(), photo.getFilename(), photo.getFileType(), photo.getFileContent());
     }
 }
 

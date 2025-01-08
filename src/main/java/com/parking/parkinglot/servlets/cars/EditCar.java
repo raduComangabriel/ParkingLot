@@ -28,7 +28,7 @@ public class EditCar extends HttpServlet {
         Long carID=Long.parseLong(request.getParameter("id"));
         CarDto car= carsBean.findByid(carID);
         request.setAttribute("car",car);
-        request.getRequestDispatcher("/WEB-INF/pages/editCar.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/pages/cars/editCar.jsp").forward(request,response);
     }
 
     @Override
