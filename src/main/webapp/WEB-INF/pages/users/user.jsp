@@ -5,7 +5,7 @@
 <t:pageTemplate pageTitle="Users">
     <h1>Users</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Users">
-        <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
+        <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
             <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser">Add User</a>
             <button class="btn btn-danger" type="submit">Invoice</button>
         </c:if>
@@ -25,6 +25,12 @@
                             ${user.email}
                     </div>
                 </div>
+                <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+                    <div class="col">
+                        <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditUser?id=${user.id}">Edit User</a>
+                    </div>
+                </c:if>
+
             </c:forEach>
         </div>
 
